@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="theme-color" content="#0b1428" />
-<title>VPC Gateway Endpoints | Diagrama Interativo AWS SAA-C03</title>
+<title>VPC Gateway Endpoints | Apresentação Tela Inteira · AWS SAA-C03</title>
 <style>
 :root{color-scheme:dark;--body:#081121;--base:#0c182e;--surface:#111f37;--surface2:#172b46;--border:#2b435f;--text:#eff6ff;--muted:#a9bfd6;--cyan:#53c9f8;--mint:#57e4b5;--purple:#b19aff;--yellow:#ffca73;--pink:#fb85a4;--coral:#ff987d}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--body);font:14px/1.48 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:var(--text)}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:2px solid #7dd3fc;outline-offset:3px}a{color:#91daff}button:disabled{opacity:.45;cursor:default}
@@ -19,18 +19,99 @@
 #quiz{display:none;margin-top:16px;background:#121f34;border:1px solid #476282;border-radius:14px;padding:21px}#quiz.open{display:block}#quiz h2{margin:2px 0 5px;font-size:20px}#quiz p{color:#bcd0e5;margin:0 0 14px}.choices{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}.choice{background:#172b43;border:1px solid #395675;border-radius:9px;padding:10px;display:flex;align-items:center;gap:9px;cursor:pointer;font-weight:650}.choice:has(input:checked){border-color:#60d1b0;background:#154b46}.choice input{accent-color:#47d0a2;width:16px;height:16px;flex:0 0 auto}.quiz-actions{margin-top:13px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.result{font-size:13px;font-weight:750;color:#ffe1a9}.result.correct{color:#8effd4}.source-links{font-size:11px;line-height:1.75;color:#91a8c4;margin:15px 2px 5px}.source-links a{margin-right:10px}.foot{font-size:11px;color:#8da5c4;margin-top:12px}
 /* Diagram SVG */
 .diagram-bg{fill:#0a1629}.griddot{fill:#1e3552;opacity:.55}.boundary{fill:none;stroke-width:2;stroke-dasharray:8 5}.boundary-label{font-weight:800;font-size:17px;letter-spacing:.05em}.subnet{fill-opacity:.09;stroke-width:2;stroke-dasharray:7 6}.svgtiny{font-size:13px;fill:#b5c7da}.svgsmall{font-size:14px;fill:#c7d9eb}.svg-label{font-size:17px;fill:#e8f4ff;font-weight:800}.svg-title{font-size:21px;fill:#f1f7ff;font-weight:800;letter-spacing:-.015em}.svg-sub{font-size:13px;fill:#bfcee1}.node{cursor:pointer;outline:none}.node .node-bg{transition:fill .15s,stroke-width .15s;stroke-width:2}.node:hover .node-bg,.node:focus-visible .node-bg{stroke-width:3.8;fill-opacity:.24}.node.selected .node-bg{stroke:#fff;stroke-width:4;filter:drop-shadow(0 0 8px #a4f5ff77)}.node.dim{opacity:.24}.node.inpath .node-bg{stroke-width:3;filter:drop-shadow(0 0 7px #5ce6c66b)}.endpoint-card{fill:#1b443c;fill-opacity:.28;stroke:#4de3b1;stroke-width:2}.table-line{stroke:#39516b;stroke-width:1}.table-entry{fill:#a7c6de;font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.table-active{fill:#7cfad0;font-weight:800}.route{fill:none;stroke:#7891ac;stroke-width:2.5;opacity:.36;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}.route.dim{opacity:.04}.route.active{stroke:#5be5c4;stroke-width:5;opacity:1;stroke-dasharray:14 10;animation:dash 1s linear infinite;filter:drop-shadow(0 0 5px #20cba999)}.route.active.nat{stroke:#ffbe73;filter:drop-shadow(0 0 5px #ed9b58aa)}.route.active.iface{stroke:#b49aff;filter:drop-shadow(0 0 5px #b49aff88)}.svg-help{fill:#9aafc8;font-size:13px}.clickable-heading{cursor:pointer}@keyframes dash{to{stroke-dashoffset:-48}}@media (prefers-reduced-motion:reduce){.route.active{animation:none}}@media(max-width:1120px){.dashboard{grid-template-columns:1fr}.side{max-height:none;min-height:0}.canvas-wrap{height:min(65vh,700px)}.choices{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:650px){.container{padding:12px}.site-header{padding:17px}.canvas-wrap{height:53vh;min-height:360px}.choices{grid-template-columns:repeat(2,minmax(0,1fr))}.meta-grid{grid-template-columns:1fr}.legend{gap:8px;font-size:9px}.canvas-hint{font-size:9px}}
+
+/* =============================================================
+   MODO APRESENTAÇÃO • layout ocupa a viewport inteira
+   ============================================================= */
+html, body { height:100%; }
+body {height:100dvh; display:flex; flex-direction:column; overflow:hidden;}
+.site-header {flex:0 0 auto; padding:8px 16px 9px;}
+.header-inner {max-width:none; gap:8px;}
+.kicker {font-size:9px;letter-spacing:.11em;}
+.site-header h1 {font-size:clamp(19px,2.05vw,29px); margin:1px 0 0; line-height:1.18;}
+.site-header p {display:none;}
+.header-badges {display:none;}
+.container {max-width:none; width:100%;flex:1;min-height:0; padding:9px 12px 10px;display:flex;flex-direction:column;}
+.answer-strip {flex:0 0 auto;padding:6px 13px;margin-bottom:8px;gap:8px;border-radius:10px;min-height:46px;}
+.answer-strip strong {font-size:14px;}
+.answer-strip p {font-size:11.5px; margin:0;line-height:1.35;}
+.mini-tag {font-size:10px; padding:4px 7px;}
+.toolbar {flex:0 0 auto;margin-bottom:8px;gap:6px;min-height:34px;flex-wrap:nowrap;}
+.flow-buttons,.utility{gap:5px;}
+.flow-buttons{min-width:0;}
+.control {font-size:11px;padding:6px 10px;border-radius:7px;}
+.utility{flex:0 0 auto;}
+.dashboard {flex:1;min-height:0;grid-template-columns:minmax(0,1fr) clamp(260px,21.5vw,340px);gap:10px;align-items:stretch;}
+.canvas-wrap {width:100%;height:100%;min-height:0;max-height:none;border-radius:11px;}
+.side {height:100%;min-height:0;max-height:none;padding:13px 14px;border-radius:11px;}
+.side h2 {font-size:clamp(17px,1.6vw,22px);margin:6px 0 8px;}
+.side p {font-size:12px;line-height:1.44;margin:6px 0 9px;}
+.side h3 {margin:12px 0 6px;font-size:10px;}
+.side .fact {padding:9px;margin:9px 0;font-size:11px;}
+.side li {margin:3px 0;font-size:11px;}
+.tags{gap:4px;}.tags button{padding:4px 7px;font-size:10px;}
+.sidebar-bottom{margin-top:9px;padding-top:8px;}
+.canvas-hint{top:8px;left:8px;padding:4px 7px;font-size:10px;}
+.zoom-buttons{top:8px;right:8px;}
+.zoom-buttons button{height:30px;min-width:30px;}
+.legend{left:8px;bottom:8px;gap:8px;padding:5px 7px; font-size:9px;}
+.meta-grid,.source-links,.foot{display:none;}
+.container.focus .dashboard {grid-template-columns:minmax(0,1fr);}
+.container.focus .side {display:none;}
+#focusToggle[aria-pressed="true"]{background:#164e49;border-color:#64d5b7;color:#caffe9;}
+/* Diálogo de fontes, fora da área do diagrama */
+#notesDialog{position:fixed;inset:0;margin:auto;max-width:min(760px,92vw);max-height:85dvh;overflow:auto;border:1px solid #466784;border-radius:14px;background:#0e1f34;color:var(--text);padding:22px;box-shadow:0 24px 100px #000b;}
+#notesDialog::backdrop{background:#030918c7;backdrop-filter:blur(5px);}
+#notesDialog .meta-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
+#notesDialog .source-links,#notesDialog .foot{display:block;}
+#notesDialog h2{font-size:19px;margin:0 0 12px;}
+.modal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+#quiz{display:none;position:fixed;z-index:101;left:50%;top:50%;transform:translate(-50%,-50%);width:min(820px,93vw);max-height:88dvh;overflow:auto;margin:0;border-radius:15px;box-shadow:0 30px 100px #000e;padding:22px;}
+#quiz.open{display:block;}
+body.quiz-visible::before{content:"";position:fixed;z-index:100;inset:0;background:#030918c9;backdrop-filter:blur(5px);}
+#quiz .choices{grid-template-columns:repeat(3,minmax(0,1fr));}
+#closeQuiz{float:right;}
+@media (max-width:1270px){.control{font-size:10px;padding:6px 7px;}.utility .control{padding:6px 7px;}}
+@media (max-width:1050px){
+  .dashboard{grid-template-columns:minmax(0,1fr) 260px;}
+  .utility .control{font-size:10px;}
+  .answer-strip p{font-size:10.5px;}
+  .mini-tag{display:none;}
+}
+@media (max-width:860px){
+  body{height:auto;min-height:100dvh;overflow:auto;}
+  .container{display:block;padding:8px;}
+  .toolbar{flex-wrap:wrap;}
+  .flow-buttons{overflow-x:auto;flex-wrap:nowrap;width:100%;padding-bottom:3px;}
+  .dashboard{display:flex;flex-direction:column;}
+  .canvas-wrap{height:min(65dvh,680px);min-height:340px;}
+  .side{max-height:320px;min-height:0;}
+  .container.focus .side{display:none;}
+}
+@media (max-height:710px) and (min-width:861px){
+ .kicker{display:none;}.site-header{padding:7px 12px;}
+ .answer-strip p{display:none;}.answer-strip{min-height:35px;padding:5px 10px;}
+ .toolbar{margin-bottom:5px;}.container{padding-top:6px;padding-bottom:7px;}
+ .side .sidebar-bottom{display:none;}
+}
+@media (max-width:650px){
+ .site-header h1{font-size:18px}.site-header{padding:8px 10px;}
+ .answer-strip{padding:8px;}.answer-strip p{font-size:11px;}.answer-strip strong{font-size:12px;}
+ .canvas-wrap{height:58dvh;min-height:330px;}
+ #quiz .choices{grid-template-columns:repeat(2,minmax(0,1fr));}
+ #notesDialog .meta-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
 <header class="site-header"><div class="header-inner"><div><div class="kicker">AWS Certified Solutions Architect – Associate • SAA-C03</div><h1>VPC Gateway Endpoints · S3 e DynamoDB</h1><p>Explore o tráfego de uma EC2 privada, a route table e os dois serviços de destino.</p></div><div class="header-badges"><span>Diagrama interativo</span><span>5 caminhos de rede</span><span>Questão prática</span></div></div></header>
 <main class="container">
 <section class="answer-strip" aria-label="Resposta correta"><div><strong>✓ Resposta: Amazon S3 e Amazon DynamoDB</strong><p>Os dois serviços compatíveis com <b>Gateway Endpoints</b>. Não exigem Internet Gateway nem NAT Gateway para esse acesso.</p></div><span class="mini-tag">AWS PRIVATE NETWORK</span></section>
-<div class="toolbar"><div class="flow-buttons" id="flowButtons" role="group" aria-label="Selecionar fluxo"><button class="control active" data-flow="both">① Ambos</button><button class="control" data-flow="s3">② EC2 → S3</button><button class="control" data-flow="ddb">③ EC2 → DynamoDB</button><button class="control" data-flow="interface">④ Interface Endpoint</button><button class="control" data-flow="nat">⑤ NAT / Internet</button></div><div class="utility"><button id="quizToggle" class="control">Testar meus conhecimentos</button><button id="reset" class="control">Redefinir visão</button></div></div>
-<div class="dashboard"><div id="viewport" class="canvas-wrap" aria-label="Diagrama de arquitetura de rede interativo" role="region"><svg id="diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 935" role="img" aria-label="VPC com instância EC2 privada, route table, gateway endpoints para S3 e DynamoDB, interface endpoint e NAT Gateway"></svg><div class="canvas-hint">Selecione os elementos • arraste • zoom com rolagem</div><div class="zoom-buttons"><button id="zoomIn" aria-label="Aproximar">+</button><button id="zoomOut" aria-label="Afastar">−</button><button id="fit" aria-label="Ajustar à tela">⌂</button></div><div class="legend"><span><i style="background:#5ce7b5"></i>Gateway Endpoint</span><span><i style="background:#65d6ff"></i>VPC / EC2</span><span><i style="background:#b7a2ff"></i>Interface Endpoint</span><span><i style="background:#ffbf6d"></i>Internet / NAT</span></div></div><aside class="side" id="details" aria-live="polite"></aside></div>
-<div class="meta-grid"><div class="metric"><strong>Tipo: Gateway</strong><span>Rota por prefix list → vpce-id. Não cria ENI.</span></div><div class="metric"><strong>Tráfego: rede AWS</strong><span>Acesso da VPC sem necessidade de IGW ou NAT.</span></div><div class="metric"><strong>Sem taxa adicional*</strong><span>*O Gateway Endpoint não tem cobrança própria; custos usuais dos serviços permanecem.</span></div></div>
-<section id="quiz" aria-labelledby="quizTitle"><div class="eyebrow">Revisão SAA-C03</div><h2 id="quizTitle">Quais serviços suportam Gateway Endpoints?</h2><p>Selecione <strong>exatamente duas alternativas</strong> e confira seu resultado.</p><div class="choices" id="quizChoices"><label class="choice"><input type="checkbox" value="ddb"> DynamoDB</label><label class="choice"><input type="checkbox" value="sqs"> Amazon SQS</label><label class="choice"><input type="checkbox" value="s3"> Amazon S3</label><label class="choice"><input type="checkbox" value="kin"> Amazon Kinesis</label><label class="choice"><input type="checkbox" value="sns"> Amazon SNS</label></div><div class="quiz-actions"><button class="control" id="checkQuiz">Verificar resposta</button><button class="control" id="clearQuiz">Limpar</button><span class="result" id="quizResult" role="status"></span></div></section>
-<div class="source-links"><strong>Documentação AWS:</strong> <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html" target="_blank" rel="noopener noreferrer">Gateway Endpoints</a> <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html" target="_blank" rel="noopener noreferrer">S3</a> <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/privatelink-interface-endpoints.html" target="_blank" rel="noopener noreferrer">DynamoDB</a></div>
-<div class="foot">Diagrama didático: as conexões representam caminhos lógicos simplificados. Endpoints de gateway são alvos da route table da VPC, não dispositivos físicos ou interfaces dentro da subnet. Prefix lists e IDs são ilustrativos.</div>
+<div class="toolbar"><div class="flow-buttons" id="flowButtons" role="group" aria-label="Selecionar fluxo"><button class="control active" data-flow="both">① Ambos</button><button class="control" data-flow="s3">② EC2 → S3</button><button class="control" data-flow="ddb">③ EC2 → DynamoDB</button><button class="control" data-flow="interface">④ Interface Endpoint</button><button class="control" data-flow="nat">⑤ NAT / Internet</button></div><div class="utility"><button id="focusToggle" class="control" aria-pressed="false" title="Ocultar painel lateral e ampliar o diagrama">⛶ Modo foco</button><button id="quizToggle" class="control">◈ Quiz</button><button id="notesToggle" class="control">Notas e fontes</button><button id="reset" class="control">↺ Redefinir</button></div></div>
+<div class="dashboard"><div id="viewport" class="canvas-wrap" aria-label="Diagrama de arquitetura de rede interativo" role="region"><svg id="diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 935" role="img" aria-label="VPC com instância EC2 privada, route table, gateway endpoints para S3 e DynamoDB, interface endpoint e NAT Gateway"></svg><div class="canvas-hint">Clique nos componentes · arraste · zoom</div><div class="zoom-buttons"><button id="zoomIn" aria-label="Aproximar">+</button><button id="zoomOut" aria-label="Afastar">−</button><button id="fit" aria-label="Ajustar à tela">⌂</button></div><div class="legend"><span><i style="background:#5ce7b5"></i>Gateway Endpoint</span><span><i style="background:#65d6ff"></i>VPC / EC2</span><span><i style="background:#b7a2ff"></i>Interface Endpoint</span><span><i style="background:#ffbf6d"></i>Internet / NAT</span></div></div><aside class="side" id="details" aria-live="polite"></aside></div>
+<section id="quiz" aria-labelledby="quizTitle" role="dialog" aria-modal="true"><button type="button" class="control" id="closeQuiz" aria-label="Fechar questionário">✕ Fechar</button><div class="eyebrow">Revisão SAA-C03</div><h2 id="quizTitle">Quais serviços suportam Gateway Endpoints?</h2><p>Selecione <strong>exatamente duas alternativas</strong> e confira seu resultado.</p><div class="choices" id="quizChoices"><label class="choice"><input type="checkbox" value="ddb"> DynamoDB</label><label class="choice"><input type="checkbox" value="sqs"> Amazon SQS</label><label class="choice"><input type="checkbox" value="s3"> Amazon S3</label><label class="choice"><input type="checkbox" value="kin"> Amazon Kinesis</label><label class="choice"><input type="checkbox" value="sns"> Amazon SNS</label></div><div class="quiz-actions"><button class="control" id="checkQuiz">Verificar resposta</button><button class="control" id="clearQuiz">Limpar</button><span class="result" id="quizResult" role="status"></span></div></section>
+<dialog id="notesDialog" aria-labelledby="notesTitle"><div class="modal-head"><h2 id="notesTitle">Notas técnicas e documentação AWS</h2><button type="button" class="control" id="notesClose">✕ Fechar</button></div><div class="meta-grid"><div class="metric"><strong>Tipo: Gateway</strong><span>Rota por prefix list → vpce-id. Não cria ENI.</span></div><div class="metric"><strong>Tráfego: rede AWS</strong><span>Acesso da VPC sem necessidade de IGW ou NAT.</span></div><div class="metric"><strong>Sem taxa adicional*</strong><span>*O Gateway Endpoint não tem cobrança própria; custos usuais dos serviços permanecem.</span></div></div><div class="source-links"><strong>Documentação AWS:</strong> <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html" target="_blank" rel="noopener noreferrer">Gateway Endpoints</a> <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html" target="_blank" rel="noopener noreferrer">S3</a> <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/privatelink-interface-endpoints.html" target="_blank" rel="noopener noreferrer">DynamoDB</a></div>
+<div class="foot">Diagrama didático: as conexões representam caminhos lógicos simplificados. Endpoints de gateway são alvos da route table da VPC, não dispositivos físicos ou interfaces dentro da subnet. Prefix lists e IDs são ilustrativos.</div></dialog>
 </main>
 <script>
 (()=>{'use strict';
@@ -98,7 +179,18 @@ document.querySelectorAll('[data-flow]').forEach(b=>b.addEventListener('click',(
 document.getElementById('reset').addEventListener('click',resetView);document.getElementById('fit').addEventListener('click',()=>{view={x:0,y:0,w:1600,h:935};svg.setAttribute('viewBox','0 0 1600 935')});document.getElementById('zoomIn').addEventListener('click',()=>zoom(.8));document.getElementById('zoomOut').addEventListener('click',()=>zoom(1.25));
 viewport.addEventListener('wheel',e=>{e.preventDefault();const r=viewport.getBoundingClientRect();zoom(e.deltaY>0?1.12:.89,Math.max(0,Math.min(1,(e.clientX-r.left)/r.width)),Math.max(0,Math.min(1,(e.clientY-r.top)/r.height)))},{passive:false});
 viewport.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('.node')||e.target.closest('button')||e.target.closest('[data-boundary]'))return;drag={px:e.clientX,py:e.clientY,x:view.x,y:view.y};viewport.setPointerCapture(e.pointerId)});viewport.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.px,dy=e.clientY-drag.py;view.x=drag.x-dx/viewport.clientWidth*view.w;view.y=drag.y-dy/viewport.clientHeight*view.h;viewport.classList.add('dragging');svg.setAttribute('viewBox',`${view.x} ${view.y} ${view.w} ${view.h}`)});viewport.addEventListener('pointerup',()=>{drag=null;viewport.classList.remove('dragging')});viewport.addEventListener('pointercancel',()=>{drag=null;viewport.classList.remove('dragging')});
-const quiz=document.getElementById('quiz'),quizToggle=document.getElementById('quizToggle'),result=document.getElementById('quizResult');quizToggle.addEventListener('click',()=>{let show=quiz.classList.toggle('open');quizToggle.classList.toggle('quiz-open',show);quizToggle.setAttribute('aria-expanded',String(show));if(show)quiz.scrollIntoView({behavior:'smooth',block:'nearest'})});document.getElementById('checkQuiz').addEventListener('click',()=>{let choices=Array.from(document.querySelectorAll('#quizChoices input:checked')).map(x=>x.value);let right=choices.length===2&&choices.includes('s3')&&choices.includes('ddb');result.classList.toggle('correct',right);result.textContent=right?'✓ Correto! Apenas S3 e DynamoDB suportam Gateway Endpoints.':'Revise: Gateway Endpoints são exclusivos de S3 e DynamoDB.';if(right)setFlow('both')});document.getElementById('clearQuiz').addEventListener('click',()=>{document.querySelectorAll('#quizChoices input').forEach(x=>x.checked=false);result.textContent='';result.classList.remove('correct')});
+const quiz=document.getElementById('quiz'),quizToggle=document.getElementById('quizToggle'),result=document.getElementById('quizResult');quizToggle.addEventListener('click',()=>{let show=quiz.classList.toggle('open');quizToggle.classList.toggle('quiz-open',show);quizToggle.setAttribute('aria-expanded',String(show));document.body.classList.toggle('quiz-visible',show);if(show)document.getElementById('closeQuiz').focus()});document.getElementById('checkQuiz').addEventListener('click',()=>{let choices=Array.from(document.querySelectorAll('#quizChoices input:checked')).map(x=>x.value);let right=choices.length===2&&choices.includes('s3')&&choices.includes('ddb');result.classList.toggle('correct',right);result.textContent=right?'✓ Correto! Apenas S3 e DynamoDB suportam Gateway Endpoints.':'Revise: Gateway Endpoints são exclusivos de S3 e DynamoDB.';if(right)setFlow('both')});document.getElementById('clearQuiz').addEventListener('click',()=>{document.querySelectorAll('#quizChoices input').forEach(x=>x.checked=false);result.textContent='';result.classList.remove('correct')});
+
+const container=document.querySelector('.container');
+const focusToggle=document.getElementById('focusToggle');
+focusToggle.addEventListener('click',()=>{let on=container.classList.toggle('focus');focusToggle.setAttribute('aria-pressed',String(on));focusToggle.textContent=on?'▣ Mostrar detalhes':'⛶ Modo foco';});
+const notes=document.getElementById('notesDialog');
+document.getElementById('notesToggle').addEventListener('click',()=>notes.showModal());
+document.getElementById('notesClose').addEventListener('click',()=>notes.close());
+notes.addEventListener('click',e=>{if(e.target===notes)notes.close()});
+const closeQuiz=()=>{quiz.classList.remove('open');document.body.classList.remove('quiz-visible');quizToggle.classList.remove('quiz-open');quizToggle.setAttribute('aria-expanded','false')};
+document.getElementById('closeQuiz').addEventListener('click',closeQuiz);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&quiz.classList.contains('open'))closeQuiz();if((e.key==='f'||e.key==='F')&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!e.target.closest('input,button'))focusToggle.click()});
 setFlow('both');
 })();
 </script>
